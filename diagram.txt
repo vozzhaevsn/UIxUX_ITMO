@@ -1,0 +1,39 @@
+@startuml
+
+actor User
+    participant Browser
+    participant Server
+    participant Database
+
+    User->>Browser: 1. Открывает сайт
+    Browser->>Server: Запрос главной страницы
+    Server-->>Browser: Стартовая страница
+
+    User->>Browser: 2. Регистрация/Вход
+    Browser->>Server: Отправка формы
+    Server->>Database: Сохранение/Проверка данных
+    Database-->>Server: Подтверждение
+    Server-->>Browser: Перенаправление в каталог
+
+    User->>Browser: 3. Выбор автомобиля
+    Browser->>Server: Запрос конфигуратора
+    Server->>Database: Получение данных авто
+    Database-->>Server: Характеристики
+    Server-->>Browser: Страница настройки
+
+    User->>Browser: 4. Выбор опций
+    Browser->>Server: Отправка конфигурации
+    Server->>Database: Сохранение настроек
+    Database-->>Server: ID конфигурации
+    Server-->>Browser: Форма заказа
+
+    User->>Browser: 5. Оформление заказа
+    Browser->>Server: Подтверждение данных
+    Server->>Database: Фиксация заказа
+    Database-->>Server: Номер заказа
+    Server-->>Browser: Подтверждение + email
+
+    User->>Browser: 6. Выход
+    Browser->>Server: Запрос выхода
+    Server-->>Browser: Очистка сессии
+@enduml
